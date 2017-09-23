@@ -1,9 +1,18 @@
 pipeline {
   agent any
   stages {
-    stage('') {
+    stage('error') {
       steps {
-        echo 'yo '
+        parallel(
+          "error": {
+            echo 'yo '
+            
+          },
+          "t2": {
+            bat(script: 'echo "sup"', returnStatus: true)
+            
+          }
+        )
       }
     }
   }
